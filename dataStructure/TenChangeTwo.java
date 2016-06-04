@@ -1,0 +1,35 @@
+package dataStructure;
+import java.util.Scanner;
+import dataStructure.linearList.SqStack;
+
+public class TenChangeTwo {
+	public static void main(String[] args) throws Exception {
+		int ten,ten1;
+		int digits = 1;//表示输入十进制数的位数加一（整式整百等为原位数）
+		int space = 1;//表示栈所需空间（2的位数次方）
+		System.out.println("请输入一个十进制数：");
+		Scanner sc = new Scanner(System.in);
+		ten = sc.nextInt();
+		ten1 = ten;
+		//求出输入十进制数的位数加一
+		while(ten1!=0){
+			ten1/=10;
+			digits++;
+		}
+		//求出栈分配空间
+		while(digits!=0){
+			space*=2;
+			digits--;
+		}
+		SqStack<Integer> two = new SqStack<Integer>(space);
+		while(ten!=0){
+			int i = ten%2;
+			ten/=2;
+			two.push(i);
+		}
+		while(!two.isEmpty()){
+			System.out.print(two.pop());
+		}
+	}
+
+}
